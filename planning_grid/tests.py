@@ -1,16 +1,12 @@
-"""
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
-
-Replace this with more appropriate tests for your application.
-"""
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 from django.test import TestCase
 
+from planning_grid.forms import PlanningCellWidget
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.assertEqual(1 + 1, 2)
+class PlanningCellWidgetTest(TestCase):
+
+    def test_setting_custom_attributes(self):
+        cell = PlanningCellWidget(attrs={'id': 'my_custom_id'})
+        self.assertTrue('id="my_custom_id"' in cell.render("casa", ""))
