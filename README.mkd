@@ -1,0 +1,15 @@
+Planning Grid
+=============
+
+I’m looking to get developed a javascript control, a Django form custom form field, and a Django custom widget, along with a small Django sample application consisting of a template, form and view that demonstrates the deliverables. Finally, I would also like a set of unit tests for the Django custom form field and custom widget.
+
+Project Success
+---------------
+
+The project will be complete when the following are delivered:
+
+ - Source code for the Java Script Planning Grid control.
+ - Source code for the Django custom form field and widget.
+ - A sample django application consisting of a template, form, view demonstrating the django and java script.
+ - Unit tests for the django custom form field and widget.
+
