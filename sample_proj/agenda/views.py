@@ -13,9 +13,9 @@ def mytestview(request):
     else:
         user = form.cleaned_data['user']
         plan = form.cleaned_data['plan']
-        for key in plan.viewkeys():
+        for key in plan.iterkeys():
             print plan[key]
-        return HttpResponseRedirect(‘/mythanks/’)
+        return HttpResponseRedirect('/mythanks/')
     form = MyTestForm()
-    return render_to_response(‘mytest.html’, {‘form’ : form,})
+    return render_to_response('mytest.html', {'form' : form,})
 
