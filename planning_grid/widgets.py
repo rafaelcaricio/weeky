@@ -32,7 +32,9 @@ class PlanningGridWidget(forms.MultiWidget):
 
     class Media:
         css = {
-                "all": "css/planning_grid.css",
+                "all": [
+                    "css/planning_grid.css"
+                ]
         }
 
         js = ("js/planning_grid.js",)
@@ -70,3 +72,9 @@ class PlanningGridWidget(forms.MultiWidget):
         for i, widget in enumerate(self.widgets):
             value[widget.cell_name] = widget.value_from_datadict(data, files, name + '_%s' % i)
         return value
+
+    def decompress(self, value):
+        if value:
+            return [widget.cell_name in value and value[widget.cell_name] or None for widget in self.widgets]
+        else:
+            return []
