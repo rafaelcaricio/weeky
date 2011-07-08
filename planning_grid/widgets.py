@@ -69,4 +69,4 @@ class PlanningGridWidget(forms.MultiWidget):
         value = {}
         for i, widget in enumerate(self.widgets):
             value[widget.cell_name] = widget.value_from_datadict(data, files, name + '_%s' % i)
-        return value 
+        return value

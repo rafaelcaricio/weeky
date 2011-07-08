@@ -3,9 +3,11 @@
 
 from xml.etree import ElementTree
 
+from django.core.exceptions import ValidationError
 from django.test import TestCase
 
 from planning_grid.widgets import PlanningCellWidget, PlanningGridWidget
+from planning_grid.fields import MultipleChoiceGridField
 
 class PlanningCellWidgetTest(TestCase):
 
@@ -69,4 +71,38 @@ class PlanningGridWidgetTest(TestCase):
         self.assertTrue("Mon_Morning" in value, "should have the 'Mon_Morning' key in result value")
         self.assertEquals(value["Mon_Morning"], "Gym", "should have the 'Gym' at 'Mon_Morning'")
         self.assertEquals(len(value.keys()), 21, "should have 21 keys for activities")
+
+class MultipleChoiceGridFieldTest(TestCase):
+
+    def test_creation_of_field(self):
+        field = MultipleChoiceGridField()
+        self.assertTrue(field)
+        self.assertEquals(type(field.widget), PlanningGridWidget, "the default widget should be PlanningGridWidget")
+        self.assertTrue('invalid_dict' in field.default_error_messages, "should have a message for invalid dict")
+
+    def test_to_python_of_a_valid_value(self):
+        field = MultipleChoiceGridField()
+        self.assertEquals(field.to_python({u"Mon_Midday": u"Gym"}), {u"Mon_Midday": u"Gym"}, "should return the same value")
+
+    def test_to_python_of_a_none_value(self):
+        field = MultipleChoiceGridField()
+        self.assertEquals(field.to_python(None), {}, "should return a empty dict")
+
+    def test_to_python_of_a_invalid_value(self):
+        field = MultipleChoiceGridField()
+        self.assertRaises(ValidationError, field.to_python, [u"Mon_Midday"])
+
+    def test_validation_required_and_empty_value(self):
+        field = MultipleChoiceGridField()
+        self.assertRaises(ValidationError, field.validate, {})
+        self.assertRaises(ValidationError, field.validate, {u'Mon_Midday': u''})
+
+    def test_validation_not_required_and_empty_value(self):
+        field = MultipleChoiceGridField(required=False)
+        self.assertEquals(field.validate({}), None, "should execute without any exceptions")
+
+    def test_validation_required_and_with_value(self):
+        field = MultipleChoiceGridField()
+        self.assertEquals(field.validate({u'Mon_Midday': u'Gym'}), None, "should execute without any exceptions")
+
 

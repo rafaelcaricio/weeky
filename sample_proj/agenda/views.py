@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from django.http import HttpResponseRedirect
+from django.shortcuts import render_to_response
+
 from agenda.forms import MyTestForm
 
 def mytestview(request):
@@ -8,8 +11,8 @@ def mytestview(request):
         form = MyTestForm(request.POST)
         if form.is_valid():
     else:
-        user = form.cleaned_data[‘user’]
-        plan = form.cleaned_data[‘plan’]
+        user = form.cleaned_data['user']
+        plan = form.cleaned_data['plan']
         for key in plan.viewkeys():
             print plan[key]
         return HttpResponseRedirect(‘/mythanks/’)
