@@ -5,7 +5,7 @@ from xml.etree import ElementTree
 
 from django.test import TestCase
 
-from planning_grid.forms import PlanningCellWidget, PlanningGridWidget
+from planning_grid.widgets import PlanningCellWidget, PlanningGridWidget
 
 class PlanningCellWidgetTest(TestCase):
 
