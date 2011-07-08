@@ -4,6 +4,7 @@
 import calendar
 
 from django.conf import settings
+from django.utils.safestring import mark_safe
 from django import forms
 
 PERIODS_OF_DAY = getattr(settings, u'PERIODS_OF_DAY', (u'Morning', u'Midday', u'Evening'))
@@ -65,7 +66,7 @@ class PlanningGridWidget(forms.MultiWidget):
             planning_table.append(u'</tr>')
 
         planning_table.append(u'</table>')
-        return u''.join(planning_table)
+        return mark_safe(u''.join(planning_table))
 
     def value_from_datadict(self, data, files, name):
         value = {}
