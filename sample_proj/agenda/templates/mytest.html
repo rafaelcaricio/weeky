@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <title>Test</title>
+    </head>
+<body>
+
+{{ form.media }}
+<form action=”/mytestview/” method=”post”>{% csrf_token %}
+<p>{{ form.user }}</p>
+<p>{{ form.plan }}</p>
+</form>
+
+</body>
+</html>
