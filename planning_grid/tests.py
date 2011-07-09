@@ -38,11 +38,16 @@ class PlanningGridWidgetTest(TestCase):
         self.assertTrue(plan)
         self.assertEquals(len(plan.planning_cells), 21, "The number of cells is not 21")
 
-    def test_plan_rendering_output(self):
+    def test_plan_rendering_grid_table(self):
         plan = PlanningGridWidget()
         element = ElementTree.fromstring(plan.render("week_planning", []))
 
         self.assertEquals(element.tag, "table", "should be use a table to store the cells of planning")
+        self.assertEquals(element.get("class"), "planningGrid", "should have 'planningGrid' as CSS class")
+
+    def test_plan_rendering_output_columns_headers(self):
+        plan = PlanningGridWidget()
+        element = ElementTree.fromstring(plan.render("week_planning", []))
 
         first_tr = element.find('tr')
         plan_week_days = first_tr.findall('th')[1:]
@@ -50,6 +55,10 @@ class PlanningGridWidgetTest(TestCase):
         self.assertEquals(len(plan_week_days), 7, "should be 7 week days")
         self.assertEquals(plan_week_days[0].text, "Mon", "the first day of week should be Mon")
         self.assertEquals(plan_week_days[-1].text, "Sun", "the last day of week should be Sun")
+
+    def test_plan_rendering_output_rows_descriptions(self):
+        plan = PlanningGridWidget()
+        element = ElementTree.fromstring(plan.render("week_planning", []))
 
         periods_of_day = element.findall('tr')[1:]
 

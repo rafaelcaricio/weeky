@@ -54,7 +54,7 @@ class PlanningGridWidget(forms.MultiWidget):
 
     def format_output(self, rendered_widgets):
         sequence = 0
-        planning_table = [u'<table><tr><th class="planningGrid_column_header"></th>']
+        planning_table = [u'<table class="planningGrid"><tr><th class="planningGrid_column_header"></th>']
 
         for week_day in self.planning_calendar.iterweekdays():
             planning_table.append(u'<th class="planningGrid_column_header">%s</th>' % calendar.day_name[week_day][:3])
