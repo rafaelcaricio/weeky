@@ -34,11 +34,13 @@ class PlanningGridWidget(forms.MultiWidget):
     class Media:
         css = {
                 "all": [
-                    "css/planning_grid.css"
+                    "css/planning_grid/PlanningGridWidget.css"
                 ]
         }
 
-        js = ("js/planning_grid.js",)
+        js = (
+            "js/planning_grid/PlanningGridWidget.js",
+        )
 
     def __init__(self, week_starts_in=calendar.MONDAY, attrs={}):
         self.planning_cells = []

@@ -104,7 +104,43 @@ class PlanningGridWidgetTest(TestCase):
         self.assertEquals(type(decompressed_value), list, "should be a list of values")
         self.assertEquals(len(decompressed_value), 21, "should have 21 values")
         self.assertEquals(decompressed_value[-1], None, "the last value should be None")
- 
+
+    def test_media_css_exists(self):
+        media = PlanningGridWidget().Media()
+        self.assertTrue(hasattr(media, "css"), "should have a CSS declaration")
+
+    def test_media_css_as_dict(self):
+        media = PlanningGridWidget().Media()
+        self.assertEquals(type(media.css), dict, "the CSS declaration should be a dict")
+
+    def test_media_css_to_have_all(self):
+        media = PlanningGridWidget().Media()
+        self.assertTrue('all' in media.css, "the CSS declaration should have a all key")
+
+    def test_media_css_with_one_declaration(self):
+        media = PlanningGridWidget().Media()
+        self.assertEquals(len(media.css), 1, "the CSS declaration should have a all key")
+
+    def test_media_css_with_one_file(self):
+        media = PlanningGridWidget().Media()
+        self.assertEquals(len(media.css['all']), 1, "should have one file")
+
+    def test_media_css_file(self):
+        media = PlanningGridWidget().Media()
+        self.assertEquals(media.css["all"][0], "css/planning_grid/PlanningGridWidget.css", "the CSS file should be planning_grid.css")
+
+    def test_media_js_exists(self):
+        media = PlanningGridWidget().Media()
+        self.assertTrue(hasattr(media, "js"), "should have a JS declaration")
+
+    def test_media_js_to_have_3_files(self):
+        media = PlanningGridWidget().Media()
+        self.assertEquals(len(media.js), 1, "should have 1 JS file")
+
+    def test_media_js_files(self):
+        media = PlanningGridWidget().Media()
+        self.assertTrue("js/planning_grid/PlanningGridWidget.js" in media.js, "should have the planning grid component JS file")
+
 class MultipleChoiceGridFieldTest(TestCase):
 
     def test_creation_of_field(self):
