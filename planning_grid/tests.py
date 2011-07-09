@@ -58,6 +58,27 @@ class PlanningGridWidgetTest(TestCase):
         self.assertEquals(periods_of_day[1].find('th').text, "Midday", "should be 'Midday'")
         self.assertEquals(periods_of_day[2].find('th').text, "Evening", "should be 'Evening'")
 
+    def test_when_render_column_header(self):
+        plan = PlanningGridWidget()
+        element = ElementTree.fromstring(plan.render("week_planning", []))
+
+        first_line = element.find('tr')
+        headers = first_line.findall('th')
+
+        for header in headers:
+            self.assertTrue("class" in header.keys(),  "[%s] should have a class attribute" % ElementTree.tostring(header))
+            self.assertTrue("planningGrid_column_header" in header.get("class"), "[%s] should have 'planningGrid_column' class" % ElementTree.tostring(header))
+
+    def test_when_render_row_description_cells(self):
+        plan = PlanningGridWidget()
+        element = ElementTree.fromstring(plan.render("week_planning", []))
+
+        rows = element.findall('tr')[1:]
+
+        for description_cell in map(lambda r: r.find("th"), rows):
+            self.assertTrue("class" in description_cell.keys(),  "[%s] should have a class attribute" % ElementTree.tostring(description_cell))
+            self.assertTrue("planningGrid_row_header" in description_cell.get("class"), "[%s] should have 'planningGrid_row_header' class" % ElementTree.tostring(description_cell))
+
     def test_plan_from_data(self):
         plan = PlanningGridWidget()
         data_dict = {}
