@@ -40,7 +40,8 @@ document.addEvent('domready', function() {
         },
         
         fireInputFocus: function() {
-            this.toggleCell();
+            this.display.addClass("hide");
+            this.input.removeClass("hide");
             this.input.focus();
         },
 
