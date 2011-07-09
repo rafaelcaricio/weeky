@@ -1,0 +1,35 @@
+
+.planningGrid .planningGrid_column_header {
+    background-color: #104e8b;
+    color: #e0ffff;
+}
+
+.planningGrid .planningGrid_row_header {
+    background-color: #009acd;
+    color: #e0ffff;
+}
+
+.planningGrid .planningCell_container {
+    width: 100px;
+    height: 100px;
+}
+
+.planningGrid .planningCell_container .planningCell_display {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    background-color: #00bbff;
+}
+
+.planningGrid .planningCell_container .mouseover {
+    background-color: #e79d35;
+}
+
+.planningGrid .planningCell_container .hide {
+    display: none;
+}
+
+.planningGrid .planningCell_container textarea{
+    width: 100px;
+    height: 100px;
+}

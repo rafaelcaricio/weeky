@@ -11,11 +11,6 @@ from planning_grid.fields import MultipleChoiceGridField
 
 class PlanningCellWidgetTest(TestCase):
 
-    def test_setting_custom_attributes(self):
-        cell = PlanningCellWidget('Morning', 'Sunday', attrs={'bla': 'my_custom_attr'})
-        element = ElementTree.fromstring(cell.render("casa", ""))
-        self.assertEquals(element.get("bla"), "my_custom_attr")
-
     def test_create_attrs_relative_to_params(self):
         cell = PlanningCellWidget('Morning', 'Sunday', attrs={'bla': 'my_custom_attr'})
         attrs = cell.build_attrs()
@@ -30,6 +25,11 @@ class PlanningCellWidgetTest(TestCase):
         attrs = cell.build_attrs()
         self.assertEqual(attrs['id'], 'mon_midday_id')
         self.assertEqual(attrs['name'], 'use_this_name')
+
+    def test_to_have_class(self):
+        cell = PlanningCellWidget('Morning', 'Sunday')
+        element = ElementTree.fromstring(cell.render("cell_0", ""))
+        self.assertEquals(element.get("class"), "planningCell_container", "[%s] should have a css class" % ElementTree.tostring(element))
 
 class PlanningGridWidgetTest(TestCase):
 

@@ -29,6 +29,16 @@ class PlanningCellWidget(forms.Textarea):
 
         return attrs
 
+    def render(self, name, value, attrs=None):
+        if not attrs:
+            attrs = {}
+        attrs.update({"class": "hide"})
+
+        textarea = super(PlanningCellWidget, self).render(name, value, attrs)
+
+        return mark_safe(u'<div class="planningCell_container" tabindex="0">\
+                <div class="planningCell_display"></div>%s</div>' % textarea)
+
 class PlanningGridWidget(forms.MultiWidget):
 
     class Media:
