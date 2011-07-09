@@ -41,7 +41,6 @@ class PlanningGridWidgetTest(TestCase):
     def test_plan_rendering_output(self):
         plan = PlanningGridWidget()
         element = ElementTree.fromstring(plan.render("week_planning", []))
-        #print plan.render("week_plan", [])
 
         self.assertEquals(element.tag, "table", "should be use a table to store the cells of planning")
 
@@ -62,7 +61,7 @@ class PlanningGridWidgetTest(TestCase):
     def test_plan_from_data(self):
         plan = PlanningGridWidget()
         data_dict = {}
-        for i in xrange(21):
+        for i in xrange(len(plan.planning_cells)):
             data_dict["week_plan_%d" % i] = i == 0 and "Gym" or str(i)
 
         value = plan.value_from_datadict(data_dict, None, "week_plan")
@@ -72,6 +71,40 @@ class PlanningGridWidgetTest(TestCase):
         self.assertEquals(value["Mon_Morning"], "Gym", "should have the 'Gym' at 'Mon_Morning'")
         self.assertEquals(len(value.keys()), 21, "should have 21 keys for activities")
 
+    def test_decompress_value(self):
+        plan = PlanningGridWidget()
+        data_dict = {}
+        for i in xrange(len(plan.planning_cells)):
+            data_dict["week_plan_%d" % i] = i == 0 and "Gym" or str(i)
+
+        value = plan.value_from_datadict(data_dict, None, "week_plan")
+
+        decompressed_value = plan.decompress(value)
+
+        self.assertEquals(type(decompressed_value), list, "should be a list of values")
+        self.assertEquals(decompressed_value[0], "Gym", "the first value should be 'Gym'")
+        self.assertEquals(decompressed_value[-1], "20", "the last value should be '20'")
+        self.assertEquals(len(decompressed_value), 21, "should have 21 values")
+
+    def test_decompress_value_with_empty_dict(self):
+        plan = PlanningGridWidget()
+        decompressed_value = plan.decompress({})
+        self.assertEquals(decompressed_value, [], "should be a empty list")
+
+    def test_decompress_value_with_partial_populated_dict(self):
+        plan = PlanningGridWidget()
+        data_dict = {}
+        for i in xrange(len(plan.planning_cells) - 10):
+            data_dict["week_plan_%d" % i] = i == 0 and "Gym" or str(i)
+
+        value = plan.value_from_datadict(data_dict, None, "week_plan")
+
+        decompressed_value = plan.decompress(value)
+
+        self.assertEquals(type(decompressed_value), list, "should be a list of values")
+        self.assertEquals(len(decompressed_value), 21, "should have 21 values")
+        self.assertEquals(decompressed_value[-1], None, "the last value should be None")
+ 
 class MultipleChoiceGridFieldTest(TestCase):
 
     def test_creation_of_field(self):
