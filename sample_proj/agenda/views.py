@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
+from django.template.response import TemplateResponse
 
 from agenda.forms import MyTestForm
 
@@ -17,5 +17,5 @@ def mytestview(request):
             return HttpResponseRedirect('/mythanks/')
     else:
         form = MyTestForm()
-    return render_to_response('mytest.html', {'form' : form,})
+    return TemplateResponse(request, 'mytest.html', {'form' : form,})
 

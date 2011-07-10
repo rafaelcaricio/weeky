@@ -75,7 +75,7 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
 STATICFILES_DIRS = (
 
     join(ROOT_PATH, 'media'),
-    abspath(join(ROOT_PATH, '../planning_grid/media')),
+    #abspath(join(ROOT_PATH, '../planning_grid/media')),
 
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
@@ -106,7 +106,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.csrf.CsrfResponseMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
