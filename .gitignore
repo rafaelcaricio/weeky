@@ -2,6 +2,7 @@
 *.pyo
 *~
 *.swp
+*.swo
 *.egg-info
 .venv
 .DS_Store

@@ -36,7 +36,7 @@ class PlanningCellWidget(forms.Textarea):
 
         textarea = super(PlanningCellWidget, self).render(name, value, attrs)
 
-        return mark_safe(u'<div class="planningCell_container" tabindex="0">\
+        return mark_safe(u'<div class="planningCell_container"><div class="tabHandler" tabindex="0"></div>\
                 <div class="planningCell_display">%s</div>%s</div>' % (value or "", textarea))
 
 class PlanningGridWidget(forms.MultiWidget):

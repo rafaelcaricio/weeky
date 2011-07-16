@@ -10,6 +10,7 @@
 }
 
 .planningGrid .planningCell_container {
+    position: relative;
     width: 100px;
     height: 100px;
 }
@@ -32,4 +33,17 @@
 .planningGrid .planningCell_container textarea{
     width: 100px;
     height: 100px;
+}
+
+.planningGrid .planningGrid_dragfrom {
+    background-color: #6b7b95;
+}
+
+.planningGrid .planningGrid_dragto {
+    background-color: red !important;
+}
+
+.planningGrid .planningGrid_drag {
+    opacity: 0.5;
+    z-index: 100;
 }
