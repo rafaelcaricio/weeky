@@ -8,10 +8,10 @@ What is the Weeky?
 
 The project contents:
 
- - Source code for the Java Script Planning Grid control.
+ - A javascript Planning Grid control.
  - Source code for the Django custom form field and widget.
- - Sample django application consisting of a template, form, view demonstrating the django and java script.
- - Unit tests for the django custom form field and widget.
+ - Sample Django application consisting of a template, form, view demonstrating the django and javascript.
+ - Unit tests for the Django custom form field and widget.
 
 License
 -------
