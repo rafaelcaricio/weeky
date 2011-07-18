@@ -1,5 +1,5 @@
-Planning Grid
-=============
+Weeky
+=====
 
 A javascript control, a Django form custom form field, and a Django custom widget, along with a small Django sample application consisting of a template, form and view that demonstrates the deliverables.
 
