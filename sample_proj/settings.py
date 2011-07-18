@@ -133,7 +133,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'planning_grid',
+    'weeky',
     'agenda',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',

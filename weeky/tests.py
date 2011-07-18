@@ -6,8 +6,8 @@ from xml.etree import ElementTree
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 
-from planning_grid.widgets import PlanningCellWidget, PlanningGridWidget
-from planning_grid.fields import MultipleChoiceGridField
+from weeky.widgets import PlanningCellWidget, PlanningGridWidget
+from weeky.fields import MultipleChoiceGridField
 
 class PlanningCellWidgetTest(TestCase):
 

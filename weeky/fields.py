@@ -7,7 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import smart_unicode
 from django import forms
 
-from planning_grid.widgets import PlanningGridWidget
+from weeky.widgets import PlanningGridWidget
 
 
 class MultipleChoiceGridField(forms.Field):
