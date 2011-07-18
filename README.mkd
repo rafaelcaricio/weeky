@@ -3,13 +3,13 @@ Weeky
 
 A javascript control, a Django form custom form field, and a Django custom widget, along with a small Django sample application consisting of a template, form and view that demonstrates the deliverables.
 
-Project Success
----------------
+What is the Weeky?
+------------------
 
-The project will be complete when the following are delivered:
+The project contents:
 
  - Source code for the Java Script Planning Grid control.
  - Source code for the Django custom form field and widget.
- - A sample django application consisting of a template, form, view demonstrating the django and java script.
+ - Sample django application consisting of a template, form, view demonstrating the django and java script.
  - Unit tests for the django custom form field and widget.
 
